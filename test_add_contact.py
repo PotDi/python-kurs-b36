@@ -13,9 +13,7 @@ class TestAddContact(unittest.TestCase):
     
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_page_new_contact(wd)
         self.create_new_contact(wd, Contact(firstname="wewew", middlename="rerfdfdf", lastname="fsdfdsf", nickname="alex", title="zagolovok", company="corporation", address="vyzov",
                                 home="rubik.bil", mobile="9800089899", work="sdfsd", fax="9787879", email="sdfsd@sasd.ru", homepage="www.ya.ru", bday="1",
                                 amonth="January", byear="1980", bmonth="January", aday="8", ayear="1990", address2="sdsadsa", phone2="sdadas", notes="asdasd"))
@@ -26,6 +24,7 @@ class TestAddContact(unittest.TestCase):
 
     def create_new_contact(self, wd, contact):
         # create new contact
+        self.open_page_new_contact(wd)
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -96,6 +95,7 @@ class TestAddContact(unittest.TestCase):
         wd.get("http://localhost/addressbook/edit.php")
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
