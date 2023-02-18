@@ -1,29 +1,18 @@
-from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-from fixture.session import SessionHelper
-from fixture.group import GroupHelper
-from fixture.contact import ContactHelper
 
 
-class Application:
+class ContactHelper:
 
-    def __init__(self):
-        self.wd = webdriver.Chrome()
-        self.wd.implicitly_wait(30)
-        self.session = SessionHelper(self)
-        self.group = GroupHelper(self)
-        self.contact = ContactHelper(self)
-
+    def __init__(self, app):
+        self.app = app
 
     def open_home_page(self):
-        wd = self.wd
+        wd = self.app.wd
         wd.get("http://localhost/addressbook/")
 
-# Вспомогательные функции для теста test_add_contact.py
     def create_new_contact(self, contact):
-        # create new contact
-        wd = self.wd
-        self.open_page_new_contact()
+        wd = self.app.wd
+        self.app.open_page_new_contact()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -88,11 +77,3 @@ class Application:
         wd.find_element_by_name("notes").send_keys(contact.notes)
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("home page").click()
-
-    def open_page_new_contact(self):
-        wd = self.wd
-        wd.find_element_by_link_text("add new").click()
-        wd.get("http://localhost/addressbook/edit.php")
-
-    def destroy(self):
-        self.wd.quit()
