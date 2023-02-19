@@ -73,3 +73,7 @@ class ContactHelper:
         wd.find_element_by_name("notes").send_keys(contact.notes)
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("home page").click()
+
+    def delete_contact(self, contact):
+        wd = self.app.wd
+        self.app.open_page_new_contact()
