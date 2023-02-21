@@ -80,6 +80,7 @@ class ContactHelper:
 
     def edit_contact(self, contact):
         wd = self.app.wd
+        self.app.open_home_page()
         #select contact
         wd.find_element_by_xpath("//input[@value=5]").click()
         wd.find_element_by_xpath("//a[@href='edit.php?id=5']").click()
@@ -150,6 +151,7 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.app.open_home_page()
         #select contact
         wd.find_element_by_name("selected[]").click()
         #submit contact delete
