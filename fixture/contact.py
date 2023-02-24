@@ -14,7 +14,7 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_page_new_contact()
         #Fill contact details
-        self.contact_details(contact, wd)
+        self.add_contact_details(contact, wd)
         #Submit fill
         wd.find_element_by_name("submit").click()
         wd.find_element_by_link_text("home page").click()
@@ -26,7 +26,7 @@ class ContactHelper:
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         # Fill contact details
-        self.contact_details(contact, wd)
+        self.add_contact_details(contact, wd)
         wd.find_element_by_name("update").click()
         wd.find_element_by_link_text("home page").click()
 
@@ -39,7 +39,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@onclick='DeleteSel()']").click()
         wd.switch_to.alert.accept()
 
-    def contact_details(self, contact, wd):
+    def add_contact_details(self, contact, wd):
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
