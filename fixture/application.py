@@ -23,7 +23,8 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
+        if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("searchform")) > 0):
+            wd.get("http://localhost/addressbook/")
 
     def open_page_new_contact(self):
         wd = self.wd
