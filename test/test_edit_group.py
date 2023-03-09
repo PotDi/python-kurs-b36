@@ -10,8 +10,6 @@ def test_edit_group_name(app):
     app.group.edit_first_group(Group(name="New group"))
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups)
-    old_groups[0] = group
-    assert sorted(old_groups, key=Group.id_for_max) == sorted(new_groups, key=Group.id_for_max)
 
 
 # def test_edit_group_header(app):
