@@ -33,7 +33,7 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         #open edit form
-        wd.find_element_by_xpath("//img[@title='Edit']").click()
+        wd.find_elements_by_xpath("//img[@title='Edit']")[index].click()
         # Fill contact details
         self.fill_contact_form(new_contact_data)
         # submit update contact
