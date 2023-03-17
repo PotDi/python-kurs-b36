@@ -36,5 +36,5 @@ def merge_phones_like_on_home_page(contact):
     return "\n".join(filter(lambda x: x != "", #фильтруем пустые строки и потом склеиваем при помощи перевода строки
                             map(lambda x: clear(x), # удаляем все лишние символы
                                 filter(lambda x: x is not None, #фильтруем все пустые значения
-                                       [contact.homephone, contact.workphone, contact.mobilephone,
+                                       [contact.homephone, contact.mobilephone, contact.workphone,
                                         contact.secondaryphone]))))  # получаем исходный список
