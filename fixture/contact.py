@@ -106,13 +106,12 @@ class ContactHelper:
             self.app.open_home_page()
             self.contact_cache = []
             for element in wd.find_elements_by_xpath("//*[@name='entry']"):
-                cells = element.find_elements_by_tag_name("td")
                 lastname = element.find_element_by_xpath(".//td[2]").text
                 firstname = element.find_element_by_xpath(".//td[3]").text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
                 address = element.find_element_by_xpath(".//td[4]").text
                 all_email = element.find_element_by_xpath(".//td[5]").text
-                all_phones = cells[5].text
+                all_phones = element.find_element_by_xpath(".//td[6]").text
                 self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id,
                                                   all_phones_from_home_page=all_phones, address=address,
                                                   all_email_from_home_page=all_email))
