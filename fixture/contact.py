@@ -81,7 +81,7 @@ class ContactHelper:
         self.change_list_value("bmonth", contact.bmonth)
         self.change_list_value("aday", contact.aday)
         self.change_field_value("ayear", contact.ayear)
-        self.change_field_value("address2", contact.address2)
+        self.change_field_value("address2", contact.secondaryaddress)
         self.change_field_value("phone2", contact.secondaryphone)
         self.change_field_value("notes", contact.notes)
 
