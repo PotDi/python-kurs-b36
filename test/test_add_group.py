@@ -13,7 +13,7 @@ testdata = [Group(name="", header="", footer="")] + [
     Group(name=random_string("name", 10), header=random_string("header", 20), footer=random_string("footer", 20))
     for i in range(5)
 ]
-
+# Либо можно использовать такой вариант ↓
 # testdata = [
 #     Group(name=name, header=header, footer=footer)
 #     for name in ["", random_string("name", 10)]
