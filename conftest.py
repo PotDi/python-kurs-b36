@@ -6,6 +6,7 @@ import os.path
 fixture = None
 conf = None
 
+
 @pytest.fixture
 def app(request):
     global fixture
