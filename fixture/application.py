@@ -36,7 +36,7 @@ class Application:
     def open_page_new_contact(self):
         wd = self.wd
         wd.find_element_by_link_text("add new").click()
-        wd.get("http://localhost/addressbook/edit.php")
+        wd.current_url.endswith("/edit.php")
 
     def destroy(self):
         self.wd.quit()
