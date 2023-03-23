@@ -112,7 +112,8 @@ class ContactHelper:
                 address = element.find_element_by_xpath(".//td[4]").text
                 all_email = element.find_element_by_xpath(".//td[5]").text
                 all_phones = element.find_element_by_xpath(".//td[6]").text
-                self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id,
+                self.contact_cache.append(Contact(lastname=lastname,
+                                                  firstname=firstname, id=id,
                                                   all_phones_from_home_page=all_phones, address=address,
                                                   all_email_from_home_page=all_email))
         return list(self.contact_cache)
@@ -145,9 +146,11 @@ class ContactHelper:
         email = wd.find_element_by_name("email").get_attribute("value")
         secondaryemail = wd.find_element_by_name("email2").get_attribute("value")
         thirdemail = wd.find_element_by_name("email3").get_attribute("value")
-        return Contact(firstname=firstname, lastname=lastname, id=id, homephone=homephone, mobilephone=mobilephone,
+        return Contact(firstname=firstname, lastname=lastname, id=id,
+                       homephone=homephone, mobilephone=mobilephone,
                        workphone=workphone, secondaryphone=secondaryphone,
-                       address=address, email=email, secondaryemail=secondaryemail, thirdemail=thirdemail)
+                       address=address, email=email,
+                       secondaryemail=secondaryemail, thirdemail=thirdemail)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -157,6 +160,7 @@ class ContactHelper:
         mobilephone = re.search("M:(.*)", text).group(1)
         workphone = re.search("W:(.*)", text).group(1)
         secondaryphone = re.search("P:(.*)", text).group(1)
-        return Contact(homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
+        return Contact(homephone=homephone, mobilephone=mobilephone,
+                       workphone=workphone, secondaryphone=secondaryphone)
 
 
