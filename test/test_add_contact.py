@@ -1,7 +1,4 @@
 from model.contact import Contact
-import random
-import string
-import pytest
 
 
 def test_add_contact(app, json_contact):

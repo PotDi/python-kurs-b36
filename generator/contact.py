@@ -1,5 +1,6 @@
 from model.contact import Contact
 import random
+import calendar
 import string
 import os.path
 import jsonpickle
@@ -25,12 +26,50 @@ for o, a in opts:
 
 
 def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits + string.punctuation + " "*10
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
+    symbols = string.ascii_letters + string.digits + string.punctuation + " " * 10
+    return prefix + "".join(
+        [random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 
-testdata = [Contact(bday="1", amonth="January", byear="1980", bmonth="January",
-                    aday="8", ayear="1990")] + \
+def random_day():
+    day = random.randint(1, 31)
+    return str(day)
+
+
+def random_year():
+    year = random.randint(0, 9999)
+    return str(year)
+
+
+def random_month():
+    num = random.randrange(1, 12)
+    return calendar.month_name[num]
+
+
+testdata = [Contact(firstname="",
+                    middlename="",
+                    lastname="",
+                    nickname="",
+                    title="",
+                    company="",
+                    address="",
+                    homephone="",
+                    mobilephone="",
+                    workphone="",
+                    fax="",
+                    email="",
+                    secondaryemail="",
+                    thirdemail="",
+                    homepage="",
+                    bday="",
+                    amonth="-",
+                    byear="",
+                    bmonth="-",
+                    aday="",
+                    ayear="",
+                    secondaryaddress="",
+                    secondaryphone="",
+                    notes="")] + \
            [Contact(firstname=random_string("firstname", 7),
                     middlename=random_string("middlename", 8),
                     lastname=random_string("lastname", 7),
@@ -46,6 +85,12 @@ testdata = [Contact(bday="1", amonth="January", byear="1980", bmonth="January",
                     secondaryemail=random_string("secondaryemail", 6),
                     thirdemail=random_string("thirdemail", 7),
                     homepage=random_string("homepage", 6),
+                    bday=random_day(),
+                    amonth=random_month(),
+                    byear=random_year(),
+                    bmonth=random_month(),
+                    aday=random_day(),
+                    ayear=random_year(),
                     secondaryaddress=random_string("secondaryaddress", 6),
                     secondaryphone=random_string("secondaryaddress", 10),
                     notes=random_string("notes", 20))
