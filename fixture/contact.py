@@ -41,6 +41,19 @@ class ContactHelper:
         wd.find_element_by_link_text("home page").click()
         self.contact_cache = None
 
+    def edit_contact_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.app.open_home_page()
+        #open edit form
+        wd.find_element_by_xpath("//a[contains(@href, "
+                                  "'edit.php?id=%s')]" % id).click()
+        # Fill contact details
+        self.fill_contact_form(new_contact_data)
+        # submit update contact
+        wd.find_element_by_name("update").click()
+        wd.find_element_by_link_text("home page").click()
+        self.contact_cache = None
+
     def select_first_contact(self):
         self.select_contact_by_index(0)
 
