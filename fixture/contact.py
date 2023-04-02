@@ -189,4 +189,17 @@ class ContactHelper:
         return Contact(homephone=homephone, mobilephone=mobilephone,
                        workphone=workphone, secondaryphone=secondaryphone)
 
+    def add_group_in_contact(self, contact_id, group_id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        #open edit form
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("option").click()
+        # submit update contact
+        wd.find_element_by_xpath("//option[@value='%s']" % group_id).click()
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_xpath("//a[@href='./?group='%s']" %
+                                 group_id).click()
+        self.contact_cache = None
+
 

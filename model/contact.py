@@ -2,12 +2,17 @@ from sys import maxsize
 
 
 class Contact:
-    def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
-                 address=None, homephone=None, mobilephone=None, workphone=None, fax=None,
-                 email=None, secondaryemail=None, thirdemail=None, homepage=None, bday=None, amonth=None, byear=None,
+    def __init__(self, firstname=None, middlename=None, lastname=None,
+                 nickname=None, title=None, company=None,
+                 address=None, homephone=None, mobilephone=None,
+                 workphone=None, fax=None,
+                 email=None, secondaryemail=None, thirdemail=None,
+                 homepage=None, bday=None, amonth=None, byear=None,
                  bmonth=None,
-                 aday=None, ayear=None, secondaryaddress=None, secondaryphone=None,
-                 notes=None, id=None, all_phones_from_home_page=None, all_email_from_home_page=None):
+                 aday=None, ayear=None, add_group=None, secondaryaddress=None,
+                 secondaryphone=None,
+                 notes=None, id=None, all_phones_from_home_page=None,
+                 all_email_from_home_page=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
@@ -29,6 +34,7 @@ class Contact:
         self.bmonth = bmonth
         self.aday = aday
         self.ayear = ayear
+        self.add_group = add_group
         self.secondaryaddress = secondaryaddress
         self.secondaryphone = secondaryphone
         self.notes = notes
@@ -42,10 +48,11 @@ class Contact:
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) \
-            and (self.firstname == other.firstname or self.firstname is None
-                 or other.firstname is None) and \
-            (self.lastname == other.lastname or self.lastname is None
-             or other.lastname)
+               and (
+                           self.firstname == other.firstname or self.firstname is None
+                           or other.firstname is None) and \
+               (self.lastname == other.lastname or self.lastname is None
+                or other.lastname)
 
     def id_or_max(self):
         if self.id:
