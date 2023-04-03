@@ -1,4 +1,3 @@
-import self as self
 from pony.orm import *
 from datetime import datetime
 from model.group import Group

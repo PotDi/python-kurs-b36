@@ -194,9 +194,9 @@ class ContactHelper:
         self.app.open_home_page()
         self.select_contact_by_id(contact_id)
         select = Select(wd.find_element_by_name("to_group"))
-        select.select_by_value("75")
+        select.select_by_value("165")
         wd.find_element_by_name("add").click()
-        wd.find_element_by_xpath("//a[@href='./?group='75']").click()
+        wd.find_element_by_css_selector("a[href='./?group=165']").click()
         self.contact_cache = None
 
 
