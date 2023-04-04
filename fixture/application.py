@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
@@ -20,6 +22,8 @@ class Application:
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
         self.base_url = base_url
+        self.groups_page = "group.php"
+        self.group_page = "/?group="
 
     def is_valid(self):
         try:
@@ -32,6 +36,13 @@ class Application:
         wd = self.wd
         if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("searchform")) > 0):
             wd.get(self.base_url)
+
+    def go_group_page(self, id):
+        wd = self.wd
+        groups_page = self.groups_page + id
+        if not (wd.current_url.endswith(groups_page) and len(
+            wd.find_elements_by_css_selector("div[class='msgbox'")) > 0):
+            wd.find_element(By.PARTIAL_LINK_TEXT, "group page").click()
 
     def open_page_new_contact(self):
         wd = self.wd
