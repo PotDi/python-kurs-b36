@@ -189,13 +189,22 @@ class ContactHelper:
         return Contact(homephone=homephone, mobilephone=mobilephone,
                        workphone=workphone, secondaryphone=secondaryphone)
 
-    def add_group_in_contact(self, contact_id, group_id):
+    def add_contact_in_group(self, contact_id, group_id):
         wd = self.app.wd
         self.app.open_home_page()
         self.select_contact_by_id(contact_id)
         Select(wd.find_element_by_name("to_group")).select_by_value(group_id)
-        wd.find_element_by_css_selector("input[value='Add to'").click()
+        wd.find_element_by_css_selector("input[value='Add to']").click()
         wd.find_element_by_css_selector("a[href='./?group=%s']" % group_id).click()
         self.contact_cache = None
+
+    def del_contact_from_group(self, contact_id, group_id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        Select(wd.find_element_by_name("group")).select_by_value(group_id)
+        wd.find_element_by_name("remove").click()
+        wd.find_element_by_css_selector("a[href='./?group=%s']" % group_id).click()
+        self.contact_cache = None
+
 
 
