@@ -202,6 +202,7 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         Select(wd.find_element_by_name("group")).select_by_value(group_id)
+        self.select_contact_by_id(contact_id)
         wd.find_element_by_name("remove").click()
         wd.find_element_by_css_selector("a[href='./?group=%s']" % group_id).click()
         self.contact_cache = None
