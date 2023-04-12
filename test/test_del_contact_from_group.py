@@ -9,7 +9,7 @@ def test_del_contact_from_group(app, db):
     old_groups = db.get_group_list()
     group = random.choice(old_groups)
     contacts = db.get_contacts_in_group(group)
-    if len(db.get_contact_list()) == 0:
+    if not contacts:
         app.contact.create_new_contact(Contact(firstname="THIS IS TEST"))
         contacts = db.get_contact_list()
         app.contact.add_contact_in_group(contacts.id, group.id)
