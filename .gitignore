@@ -12,6 +12,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+allure-results/
 eggs/
 .eggs/
 .idea/
